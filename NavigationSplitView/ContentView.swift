@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var visibility: NavigationSplitViewVisibility = .detailOnly
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationSplitView(columnVisibility: $visibility) {
+            RequestStatusView(visibility: $visibility)
+                .toolbar(.hidden, for: .navigationBar)
+        } detail: {
+            ProductLookupView(visibility: $visibility)
+                .toolbar(.hidden, for: .navigationBar)
         }
-        .padding()
     }
 }
 

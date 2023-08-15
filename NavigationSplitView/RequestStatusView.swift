@@ -18,26 +18,18 @@ struct RequestStatusView: View {
                 Text("Request status")
                     .font(.title)
                     .padding(.bottom, 10)
-                VStack(spacing: 0) {
-                    HStack {
-                        Spacer()
-                        VStack(alignment: .leading) {
-                            Text("Requested")
-                                .frame(width: 105, height: 17)
-                                .background(Color.green)
-                                .foregroundColor(Color.black)
-                                .cornerRadius(10)
-                        }
-                    }
-                    VStack(alignment: .leading) {
-                        Text("Forena")
-                        Text("Womens good energy T-shirt")
-                        Text("XS")
-                    }
-                }
-                .padding()
-                .background(.white)
                 Spacer()
+                List {
+                    RequestCellView(text: "Requested", colour: .green)
+                    RequestCellView(text: "In Progress", colour: .orange)
+                    RequestCellView(text: "In Progress", colour: .orange)
+                    RequestCellView(text: "Delivered", colour: .blue)
+                    RequestCellView(text: "Cancelled", colour: .red)
+                    RequestCellView(text: "Requested", colour: .green)
+                }
+                .refreshable {
+                    print("make api call")
+                }
                 Button {
                     visibility = .detailOnly
                 } label: {
@@ -47,6 +39,33 @@ struct RequestStatusView: View {
                 }
             }
         }
+    }
+}
+
+struct RequestCellView: View {
+    var text: String
+    var colour: Color
+    
+    var body: some View  {
+        VStack(spacing: 0) {
+            HStack {
+                Spacer()
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(text)
+                        .frame(width: 105, height: 17)
+                        .background(colour)
+                        .foregroundColor(Color.black)
+                        .cornerRadius(10)
+                }
+            }
+            VStack(alignment: .leading) {
+                Text("Forena")
+                Text("Womens good energy T-shirt")
+                Text("XS")
+            }
+        }
+        .padding()
+        .background(.white)
     }
 }
 

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProductView: View {
     @Binding var visibility: NavigationSplitViewVisibility
+    @State private var showingAlert = false
     
     var body: some View {
         HStack {
@@ -70,6 +71,7 @@ struct ProductView: View {
                         VStack(alignment: .leading) {
                             Button {
                                 visibility = .all
+                                showingAlert = true
                             } label: {
                                 Text("Request")
                                     .font(.title)
@@ -77,6 +79,9 @@ struct ProductView: View {
                                     .background(Color.green)
                                     .foregroundColor(Color.black)
                                     .padding(.trailing, 10)
+                            }
+                            .alert("Your Item has been successfully requested.", isPresented: $showingAlert) {
+                                Button("OK", role: .cancel) { }
                             }
                         }
                         Spacer()

@@ -52,6 +52,7 @@ struct RequestCellView: View {
                 Spacer()
                 VStack(alignment: .leading, spacing: 0) {
                     Text(text)
+                        .padding(4)
                         .frame(width: 105, height: 17)
                         .background(colour)
                         .foregroundColor(Color.black)

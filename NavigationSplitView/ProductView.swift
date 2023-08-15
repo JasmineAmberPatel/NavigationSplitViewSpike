@@ -15,7 +15,17 @@ struct ProductView: View {
             Color.green.ignoresSafeArea()
                 .frame(width: 25)
             VStack {
-                Image("logo")
+                HStack {
+                    Spacer()
+                    Image("logo")
+                    Spacer()
+                    NavigationLink("Search Again", destination: ProductLookupView(visibility: $visibility))
+                        .font(.title2)
+                        .padding()
+                        .foregroundColor(.black)
+                        .background(.green)
+                    .padding(.trailing, 10)
+                }
                 HStack {
                     Image("t")
                         .padding()
@@ -66,6 +76,7 @@ struct ProductView: View {
                                     .frame(width: 390, height: 56)
                                     .background(Color.green)
                                     .foregroundColor(Color.black)
+                                    .padding(.trailing, 10)
                             }
                         }
                         Spacer()
